@@ -1,12 +1,11 @@
-import numpy as np
-
+import random
 
 
 
 class Action(object):
     END_OF_PERIOD = 'End of period
-    STEAL = 'steal',
-    TOV = 'turnover
+    STL = 'Steal',
+    TOV = 'Turnover
 
 PROB = {
     Action.TOV: (0.07, 0.1),
@@ -53,19 +52,35 @@ def possession_step():
     # - - - OREB
     # - - - DREB
 
+def intentional_foul():
+    if this.game.period >= 4:
+    # 4th or overtime
+    # must be within final 90 seconds
+    # Game must be within 8 points
+    # takes 3 seconds to foul
+
+    
+    
+def run_out_clock():
+    # No reset to 14 on off rebounds
+    # Intentional
+    if this.game.period >= 4 and this.o.pts > this.d.pts and this.seconds_in_period <= 24.0:
+        pass
+    
+    # Accidental
+    # TODO:
 
 def is_tov() {
-    prob_tov = get_ratio(this.def.tov_force, this.off.tov_avoid, Action.TOV)
-    if prob_tov > np.random.random():
+    # Determined by creator / passing
+    tov_threshold = get_ratio(this.def.tov_force, this.off.tov_avoid, Action.TOV)
+    if random.random() < tov_threshold:
         pass
-    
-    prob_stl = get_ratio(this.def.tov_force, this.off.tov_avoid, Action.STL)
-    if prob_stl > np.random.random():
-        pass
-    # Steal 4-8
+
     # help / one-on-one determines defensive side
     # creator / passing determines offensive side
+    stl_threshold = get_ratio(this.def.tov_force, this.off.tov_avoid, Action.STL)
+    if random.random() < stl_threshold:
+        pass
+
     
-    # TOV
-    # Determined by creator / passing
 
