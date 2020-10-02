@@ -53,18 +53,24 @@ def possession_step():
     # - - - DREB
 
 def intentional_foul():
-    if this.game.period >= 4:
-    # 4th or overtime
-    # must be within final 90 seconds
-    # Game must be within 8 points
-    # takes 3 seconds to foul
+    delta = self.off.points - self.def.points
+    possible_points_with_fouling = int(self.game.period_seconds_remaining / 8.0) * 3
+    possible_points_without_fouling = int(self.game.period_seconds_remaining / 30.0) * 3
+
+    if (
+            self.game.period >= 4 and
+            self.game.period_seconds_remaining <= 90 and
+            (1 <= delta <= 8 ) and
+            (possible_points_without_fouling < delta <= possible_points_with_fouling)
+    ):
+        pass
 
     
     
 def run_out_clock():
     # No reset to 14 on off rebounds
     # Intentional
-    if this.game.period >= 4 and this.o.pts > this.d.pts and this.seconds_in_period <= 24.0:
+    if self.game.period >= 4 and self.off.pts > self.def.pts and self.seconds_in_period <= 24.0:
         pass
     
     # Accidental
